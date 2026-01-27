@@ -33,4 +33,7 @@ function getHumanChoice() {
     }
 }
 
-console.log(getHumanChoice());
+// Create two variables to keep track of the user and computers score count //
+let humanScore = 0;
+let computerScore = 0;
+
