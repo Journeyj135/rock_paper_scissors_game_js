@@ -27,17 +27,17 @@ function getHumanChoice() {
 }
 
 
-// Create two variables for players choices //
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
 
+// Create two variables to keep track of the user and computers score count //
+let humanScore = 0;
+let computerScore = 0;
 
 // Create a function to play game //
 function playGame() {
-
-    // Create two variables to keep track of the user and computers score count //
-    let humanScore = 0;
-    let computerScore = 0;
+    
+    // Create two variables for players choices //
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
 
     // Create a function to play a single round of the game //
     function playRound(humanChoice, computerChoice) {
@@ -46,6 +46,8 @@ function playGame() {
         computerChoice = computerChoice.toLowerCase();
 
         if(humanChoice === computerChoice) {
+            humanScore++;
+            computerScore++;
             console.log("Its a Tie!");
         }
         else if(humanChoice === "rock" && computerChoice === "scissors") {
@@ -63,15 +65,19 @@ function playGame() {
         }
     }
 
-    for(let i = 0; i < 5; i++) {
-        playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection);
+    console.log(`Current Score - you: ${humanScore} computer: ${computerScore}`);
+}
+// start the game //
+  for(let i = 0; i < 5; i++) {
+        playGame();
     }
 
     if(humanScore > computerScore) {
         console.log(`You are the overall winner! ${humanScore} to ${computerScore}`);
-    } else{
+
+    } else if(humanScore === computerScore) {
+        console.log(`The game is a tie! ${humanScore} to ${computerScore}`);
+    }else{
         console.log(`You lost the game! ${computerScore} to ${humanScore}`);
     }
-}
-// start the game //
-playGame();
